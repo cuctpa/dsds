@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Галерея Саши</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #fff7ff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #5a2840;
+            font-family: 'Great Vibes', cursive;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(102, 64, 84, 0.12);
+        }
+        
+        a.back {
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+            background: #ff9ec2;
+            padding: 10px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back">← Назад на главную</a>
+    <h1>Галерея Саши 🌸</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        // Массив ссылок на raw изображения GitHub
+        const images = [
+            "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo1.jpg",
+            "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo2.jpg",
+            "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo3.jpg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+        images.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            gallery.appendChild(img);
+        });
+    </script>
+</body>
+
+</html>
