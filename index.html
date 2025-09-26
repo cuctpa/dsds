@@ -1,36 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Галерея Саши</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Милый сайт для Саши 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Montserrat', sans-serif; background:#fff7ff; margin:0; padding:20px; }
-    h1 { text-align:center; color:#5a2840; font-family:'Great Vibes', cursive; }
-    .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-top:20px; }
-    .gallery img { width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(102,64,84,0.12); }
-    a.back { display:block; margin-bottom:20px; text-align:center; color:#fff; background:#ff9ec2; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:500; }
+    :root{
+      --bg:#fff7ff;
+      --card:#fff;
+      --accent:#ff9ec2;
+      --accent-2:#ffd1f0;
+      --muted:#7a6f7a;
+      --shadow: 0 6px 18px rgba(102, 64, 84, 0.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,var(--bg), #fffaf7); color:#2b2230; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+    .wrap{max-width:980px;margin:32px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .logo{width:86px;height:86px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+    .logo svg{width:44px;height:44px}
+    .title h1{font-family:'Great Vibes', cursive;font-size:42px;margin:0;color:#5a2840}
+    .title p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+
+    main{display:grid;grid-template-columns:1fr;gap:22px;margin-top:24px}
+    .card{background:var(--card);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .hero{border-radius:14px;padding:28px;background:linear-gradient(180deg,rgba(255,206,236,0.6),rgba(255,240,247,0.8));display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .hero .avatar{width:110px;height:110px;border-radius:14px;background:linear-gradient(135deg,#ffdced,#ffeef8);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#6c2a46;box-shadow:0 8px 22px rgba(120,60,90,0.12)}
+    .hero h2{margin:0;font-size:20px}
+    .hero p{margin:6px 0 0;color:var(--muted)}
+    .bio{margin-top:14px;font-size:15px;line-height:1.5}
+
+    .gallery-btn{display:inline-block;margin-top:16px;padding:10px 18px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-weight:500;transition:0.3s;}
+    .gallery-btn:hover{background:var(--accent-2);}
+
+    .quote-card{margin-top:20px;background:var(--card);border-radius:18px;padding:24px;text-align:center;font-style:italic;font-size:18px;color:#6c2a46;box-shadow:var(--shadow);}
+
+    .icon-gallery{margin-top:20px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+    .icon-gallery span{font-size:32px;filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));animation: floatIcons 4s ease-in-out infinite;}
+    .icon-gallery span:nth-child(2){animation-delay:0.5s}
+    .icon-gallery span:nth-child(3){animation-delay:1s}
+    .icon-gallery span:nth-child(4){animation-delay:1.5s}
+    .icon-gallery span:nth-child(5){animation-delay:2s}
+    @keyframes floatIcons{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    footer{margin-top:22px;text-align:center;color:var(--muted);font-size:13px}
+
+    .heart{position:absolute;opacity:0.7;animation:floatHearts 6s infinite ease-in-out}
+    @keyframes floatHearts{0%{transform:translateY(0) scale(0.9);opacity:0.8}50%{transform:translateY(-40px) scale(1);opacity:1}100%{transform:translateY(0) scale(0.9);opacity:0.8}}
+    .petal{position:fixed;top:-40px;font-size:24px;animation:fall linear infinite;opacity:0.8;}
+    @keyframes fall{0%{transform:translateY(-40px) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
+
+    .cat {position:fixed;bottom:20px;left:20px;width:60px;height:60px;z-index:999;}
+    .cat svg { width:100%; height:100%; animation: catWave 2s infinite alternate; }
+    @keyframes catWave {0% { transform: translateY(0) rotate(0deg); }50% { transform: translateY(-6px) rotate(-5deg); }100% { transform: translateY(0) rotate(0deg); }}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tag{background:var(--accent-2);padding:6px 10px;border-radius:999px;font-size:12px}
+
+    @media (max-width:480px){
+      .title h1{font-size:28px}
+      .title p{font-size:13px}
+      .logo{width:60px;height:60px}
+      .hero{padding:16px;gap:12px}
+      .hero .avatar{width:80px;height:80px;font-size:24px}
+      .hero h2{font-size:18px}
+      .bio{font-size:14px}
+      .quote-card{font-size:16px;padding:18px}
+      .icon-gallery span{font-size:26px}
+      .tags .tag{font-size:11px;padding:4px 8px}
+      .gallery-btn{padding:8px 14px;font-size:14px}
+    }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back">← Назад на главную</a>
-  <h1>Галерея Саши 🌸</h1>
-  <div class="gallery" id="gallery"></div>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9-7.5C-1.5 6.5 6 3 9.5 7.5 12 10.5 12 10.5 12 10.5S12 10.5 14.5 7.5C18 3 25.5 6.5 21 12.5 19 15.65 12 20 12 20z" fill="white" opacity="0.9"/></svg>
+      </div>
+      <div class="title">
+        <h1>Для самой милой Саши</h1>
+        <p>Каждый день пусть будет полон улыбок, тепла и маленьких чудес 🌸</p>
+      </div>
+    </header>
 
-  <script>
-    // Массив ссылок на raw изображения GitHub
-    const images = [
-      "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo1.jpg",
-      "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo2.jpg",
-      "https://raw.githubusercontent.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/GITHUB_REPO/main/images/photo3.jpg"
-    ];
+    <main>
+      <section>
+        <div class="card hero">
+          <div class="avatar">С</div>
+          <div>
+            <h2>Привет, Саша!</h2>
+            <p>Ты сияешь, как утреннее солнце, и этот маленький сайт создан, чтобы напоминать тебе об этом каждый день.</p>
+            <div class="bio">Пусть каждый момент будет наполнен радостью, маленькими чудесами и нежными улыбками, чтобы твоя жизнь сияла ярче 🌸</div>
+            <div class="tags">
+              <span class="tag">Счастье</span>
+              <span class="tag">Улыбки</span>
+              <span class="tag">Мечты</span>
+            </div>
+            <a href="gallery.html" class="gallery-btn">Перейти в галерею 📷</a>
+          </div>
+        </div>
 
-    const gallery = document.getElementById('gallery');
-    images.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      gallery.appendChild(img);
-    });
-  </script>
-</body>
-</html>
+        <div class="quote-card">🌸 "Пусть каждый день будет похож на праздник" 🌸</div>
+
+        <div class="icon-gallery">
+          <span>🌸</span>
+          <span>⭐</span>
+          <span>☁️</span>
+          <span>🦋</span>
+          <span>🌙</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Сделано с любовью 💕 — сайт полностью адаптирован для мобильного телефона.
+    </footer>
+
+    <div style="position:fixed;right:12px;bottom:12px;pointer-events:none;">
+      <svg class="heart" style="width:44px;left:6px;" viewBox="0 0 24 24"><path fill="#ff9ec2" d="M12 21s-7-4.35-9-7.5C-1.5 6.5 6 3 9.5 7.5 12 10.5 12 10.5 12 10.5S12 10.5 14.5 7.5C18 3 25.5 6.5 21 12.5 19 15.65 12 21 12 21z"/></svg>
+    </div>
+
+    <div class="cat">
+      <svg viewBox="0 0 64 
